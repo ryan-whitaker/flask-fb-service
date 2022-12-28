@@ -108,6 +108,7 @@ def update_profile(payload):
 
         db = firestore.client()
         db.collection(u'users').document(uid).update(user_data)
+        user_data = db.collection(u'users').document(uid).get().to_dict()
 
         user_data = {
             **user_data,

@@ -1,7 +1,7 @@
 from app import app
 from flask import request, jsonify
 
-from auth.auth import login, signup, update_profile, update_password
+from auth.auth import login, signup, update_profile, update_password, delete
 from auth.middleware import authorize
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -17,10 +17,13 @@ def signup_route():
     return jsonify(user)
 
 @app.route('/settings/profile/delete', methods=['GET', 'POST'])
-def delete_route():
-    payload = request.get_json(force=True)["body"]
-    user = signup(payload)
-    return jsonify(user)
+def delete_route(user):
+    payload = {
+        "uid": user["user"]["uid"],
+        **request.get_json(force=True)["body"]
+    }
+    user_data = delete(payload)
+    return user_data
 
 @app.route('/settings/profile/update', methods=['GET', 'POST'])
 @authorize

@@ -7,7 +7,7 @@ The purpose of this project is to provide a very basic template to handle authen
 - Predefined routes to call from your client
 - Automatic public key extraction from the service account private key
 ## Getting Started
-To get started, you will need Python 3.10 installed.
+To get started, you will need Python 3.10 installed, an active Firebase project with email and password authentication enabled and Realtime Database established (Pyrebase will throw an error without the RTDB route).
 1. Clone the repository
 2. Create a virtual environment in the root of the directory
 3. Install the dependencies in requirements.txt
